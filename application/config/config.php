@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://localhost/esub3/';
+$config['base_url']	= 'http://localhost/cs34a-dbproject/';
 
 /*
 |--------------------------------------------------------------------------
