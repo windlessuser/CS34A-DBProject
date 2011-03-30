@@ -9,9 +9,10 @@ class Welcome extends CI_Controller {
 
 	function index()
 	{
-		
+		$data['title'] = 'Welcome!';
 		$data['main_content'] = 'login_form';
-		$this->load->view('includes/template', $data);		
+		$this->load->view('includes/template', $data);
+		$this->output->cache(60);		
 	}
 	
 	function validate_credentials()
@@ -27,6 +28,7 @@ class Welcome extends CI_Controller {
 			);
 			$this->session->set_userdata($data);
 			redirect('site/members_area');
+			$this->output->cache(60);
 		}
 		else // incorrect username or password
 		{
