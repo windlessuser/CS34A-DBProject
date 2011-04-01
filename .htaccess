@@ -188,7 +188,7 @@ FileETag None
 #   no-www.org/faq.php?q=class_b
 <IfModule mod_rewrite.c>
   RewriteEngine On
-  RewriteBase /esub3/
+  RewriteBase /CS34A-DBProject/
   RewriteCond %{HTTPS} !=on
   RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
   RewriteRule ^(.*)$ http://%1/$1 [R=301,L] 

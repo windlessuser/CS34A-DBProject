@@ -46,6 +46,7 @@ class Welcome extends CI_Controller {
 	
 	function signup()
 	{
+		$data['title'] = 'Sign Up';
 		$data['main_content'] = 'signup_form';
 		$this->load->view('includes/template', $data);
 	}
@@ -56,7 +57,7 @@ class Welcome extends CI_Controller {
 		
 		if($this->form_validation->run() == FALSE)
 		{
-			$this->load->view('signup_form');
+			redirect('welcome/signup');
 		}
 		
 		else
@@ -70,7 +71,7 @@ class Welcome extends CI_Controller {
 			}
 			else
 			{
-				$this->load->view('signup_form');			
+				redirect('welcome/signup');		
 			}
 		}
 		
