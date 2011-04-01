@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://localhost/cs34a-dbproject/';
+$config['base_url']	= 'http://localhost/CS34A-DBProject/';
 
 /*
 |--------------------------------------------------------------------------
@@ -265,7 +265,7 @@ $config['sess_time_to_update']	= 300;
 |
 */
 $config['cookie_prefix']	= uniqid();
-$config['cookie_domain']	= '.localhost/esub3';
+$config['cookie_domain']	= '.localhost/CS34A-DBProject';
 $config['cookie_path']		= '/';
 
 /*
