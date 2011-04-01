@@ -24,10 +24,18 @@ class Welcome extends CI_Controller {
 		{
 			$data = array(
 				'username' => $this->input->post('username'),
-				'is_logged_in' => true
+				'is_logged_in' => true,
+                'is_admin' => $query['is_admin']
 			);
 			$this->session->set_userdata($data);
-			redirect('site/members_area');
+            if($query['is_admin'])
+            {
+			    redirect('admin');
+            }
+            else
+            {
+                redirect('member');
+            }
 			$this->output->cache(60);
 		}
 		else // incorrect username or password
