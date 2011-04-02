@@ -41,6 +41,7 @@ create table Orders
         Dates      Date         not null,
         Quant      int(4)       not null,
         primary key(Order_id),
+        primary key(Item_name),
         foreign key(Item_name) references Item(Item_name)
 )ENGINE = INNODB;
 
