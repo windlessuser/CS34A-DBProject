@@ -3,14 +3,17 @@ create table Itype
        primary key(Item_type)
 );
 
+
+
 create table Brands
 (      Brand       varchar(10)  not null,
        primary key(Brand)
 );
 
-create table Brand
-(      Item_no    varchar(10)   not null,
-       Item_type  varchar(10)   not null,
+
+
+create table Item
+(      Item_name  varchar(10)   not null,
        Brand      varchar(10)   not null,
        quant      int(4)        not null,
        primary key(item_no),
@@ -31,6 +34,13 @@ create table User
 )Engine = INNODB;
 
 
-create table Store
-(      
+
+create table Orders
+(       Order_id   varchar(10)  not null,
+        Item_name  varchar(10)  not null,
+        Dates      Date         not null,
+        Quant      int(4)       not null,
+        primary key(Order_id),
+        foreign key(Item_name) references Item(Item_name)
+)ENGINE = INNODB;
 
