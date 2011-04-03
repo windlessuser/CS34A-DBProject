@@ -224,7 +224,7 @@ $config['cache_path'] = '';
 | MUST set an encryption key.  See the user guide for info.
 |
 */
-$config['encryption_key'] = uniqid(uniqid(),true);
+$config['encryption_key'] = uniqid("",true);
 
 /*
 |--------------------------------------------------------------------------
@@ -264,8 +264,8 @@ $config['sess_time_to_update']	= 300;
 | 'cookie_path'   =  Typically will be a forward slash
 |
 */
-$config['cookie_prefix']	= uniqid();
-$config['cookie_domain']	= '.localhost/CS34A-DBProject';
+$config['cookie_prefix']	= "";
+$config['cookie_domain']	= '';
 $config['cookie_path']		= '/';
 
 /*
