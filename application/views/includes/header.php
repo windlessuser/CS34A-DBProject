@@ -16,12 +16,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- Place favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
-  <link rel="shortcut icon" href="/esub3/favicon.ico">
-  <link rel="apple-touch-icon" href="/esub3/apple-touch-icon.png">
+  <link rel="shortcut icon" href=" <?php echo site_url();?>favicon.ico">
+  <link rel="apple-touch-icon" href="<?php echo site_url();?>apple-touch-icon.png">
 
 
   <!-- CSS : implied media="all" -->
-  <link rel="stylesheet" href="css/style.css?v=2">
+  <link rel="stylesheet" href="<?php echo site_url();?>css/style.css?v=2">
 
   <!-- Uncomment if you are specifically targeting less enabled mobile browsers
   <link rel="stylesheet" media="handheld" href="css/handheld.css?v=2">  -->
@@ -35,5 +35,7 @@
 
   <div id="container">
     <header>
-     
+     	<div id="search">
+     		
+     	</div>
     </header>

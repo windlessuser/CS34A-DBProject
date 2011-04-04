@@ -20,7 +20,7 @@
                array(
                      'field'   => 'username', 
                      'label'   => 'Username', 
-                     'rules'   => 'trim|required|min_length[4]'
+                     'rules'   => 'trim|required|min_length[4]|max_length[10]'
                   ),
 			   array(
                      'field'   => 'password', 

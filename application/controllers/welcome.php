@@ -21,6 +21,7 @@ class Welcome extends CI_Controller {
 		
 		if($query['is_user']) // if the user's credentials validated...
 		{
+			echo $query['is_admin'];
 			$data = array(
 				'username' => $this->input->post('username'),
 				'is_logged_in' => true,
@@ -33,7 +34,7 @@ class Welcome extends CI_Controller {
             }
             else
             {
-                redirect('member');
+                echo $query['is_admin'];
             }
 		}
 		else // incorrect username or password

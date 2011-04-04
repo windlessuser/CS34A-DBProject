@@ -231,10 +231,10 @@ body {
 	font-family: arial;
 }
 #login_form {
-	width: 300px;
+	width: 200px;
 	background: #f0f0f0 url(../img/login_bg.jpg) repeat-x 0 0;
 	border: 1px solid white;
-	margin: 250px auto 0;
+	margin: 250px 15px auto 0;
 	padding: 1em;
 	-moz-border-radius: 3px;
 }
@@ -247,7 +247,7 @@ h1,h2,h3,h4,h5 {
 input[type=text], input[type=password] {
 	display: block;
 	margin: 0 0 1em 0;
-	width: 280px;
+	width: 180px;
 	border: 5px;
 	-moz-border-radius: 1px;
 	-webkit-border-radius: 1px;
@@ -273,6 +273,48 @@ input[type=submit]:hover, form a:hover {
 	background: #287368;
 	cursor: pointer;
 }
+
+	#inventory_table{
+	 width: 600px;
+	 margin: auto;
+	font-family: helvetica, arial;
+	}
+
+	table {
+	 width: 600px;
+	 margin-bottom: 10px;
+	}
+
+	td {
+	 border-right: 1px solid #aaaaaa;
+	 padding: 1em;
+	}
+
+	td:last-child {
+	 border-right: none;
+	}
+
+	th {
+	 text-align: left;
+	 padding-left: 1em;
+	 background: #cac9c9;
+	border-bottom: 1px solid white;
+	border-right: 1px solid #aaaaaa;
+	}
+
+	#inventory a, #inventory strong {
+	 background: #e3e3e3;
+	 padding: 4px 7px;
+	 text-decoration: none;
+	border: 1px solid #cac9c9;
+	color: #292929;
+	font-size: 13px;
+	}
+
+	#inventory strong, #inventory a:hover {
+	 font-weight: normal;
+	 background: #cac9c9;
+	}
 
 
 
