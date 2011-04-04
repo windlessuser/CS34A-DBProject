@@ -22,3 +22,5 @@ class Admin extends Controller{
     }
 
 }
+/* End of file admin.php */
+/* Location: ./application/controllers/admin.php */
