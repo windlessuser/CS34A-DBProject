@@ -5,6 +5,6 @@
 	<?php echo form_upload('CSV', 'inventory.csv');?>
 	<?php echo form_submit('submit','upload');?>
 	<?php echo form_close();?>
-	<?php echo $error; ?>
+	<?php ?>
 	
 </div>
