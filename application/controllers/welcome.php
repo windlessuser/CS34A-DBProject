@@ -11,8 +11,7 @@ class Welcome extends CI_Controller {
 	{
 		$data['title'] = 'Welcome!';
 		$data['main_content'] = 'login_form';
-		$this->load->view('includes/template', $data);
-		$this->output->cache(60);		
+		$this->load->view('includes/template', $data);	
 	}
 	
 	function validate_credentials()
@@ -20,23 +19,23 @@ class Welcome extends CI_Controller {
 		$this->load->model('membership_model');
 		$query = $this->membership_model->validate();
 		
-		if($query) // if the user's credentials validated...
+		if($query['is_user']) // if the user's credentials validated...
 		{
+			echo $query['is_admin'];
 			$data = array(
 				'username' => $this->input->post('username'),
 				'is_logged_in' => true,
                 'is_admin' => $query['is_admin']
 			);
 			$this->session->set_userdata($data);
-            if($query['is_admin'])
+            if($query['is_admin'] == 1)
             {
 			    redirect('admin');
             }
             else
             {
-                redirect('member');
+                echo $query['is_admin'];
             }
-			$this->output->cache(60);
 		}
 		else // incorrect username or password
 		{
