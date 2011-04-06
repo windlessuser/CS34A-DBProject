@@ -1,5 +1,4 @@
 <?php
-
 class Inventory_CRUD extends CI_model{
 	
 	function __construct()
@@ -36,72 +35,71 @@ class Inventory_CRUD extends CI_model{
 		return $ret;		
 	}
 	
-	function search($query_array, $limit, $offset, $sort_by, $sort_order){
+	function search($query_array,$limit, $offset, $sort_by, $sort_order){
+		var_dump($query_array);	
 		$sort_order = ($sort_order == 'desc') ? 'desc' : 'asc';
 		$sort_columns = array('name','brand','category','price','quantity','description');
 		$sort_by = (in_array($sort_by, $sort_columns)) ? $sort_by : 'name';
-		
 		// results query
 		$q = $this->db->select('image,name,brand,category,price,quantity,description')
 			->from('inventory')
 			->limit($limit, $offset)
 			->order_by($sort_by, $sort_order);
-			
-		if (strlen($query_array['name'])) {
+		/*	
+		if (($query_array['name'])) {
 			$q->like('name', $query_array['name']);
 		}
-		if (strlen($query_array['category'])) {
+		if ($query_array['category']) {
 			$q->like('category', $query_array['category']);
 		}
-		if (strlen($query_array['brand'])) {
+		if (($query_array['brand'])) {
 			$q->like('brand', $query_array['brand']);
 		}
-		if (strlen($query_array['price'])) {
+		if (($query_array['price'])) {
 			$operators = array('gt' => '>', 'gte' => '>=', 'eq' => '=', 'lte' => '<=', 'lt' => '<');
 			$operator = $operators[$query_array['price_comparison']];
 						
 			$q->where("price $operator", $query_array['price']);
 		}
-		if (strlen($query_array['quantity'])) {
+		if ($query_array['quantity']){
 			$operators = array('gt' => '>', 'gte' => '>=', 'eq' => '=', 'lte' => '<=', 'lt' => '<');
 			$operator = $operators[$query_array['quantity_comparison']];
 						
 			$q->where("quantity $operator", $query_array['quantity']);
 		}
-		
+		*/
 		$ret['rows'] = $q->get()->result();
 		
 		// count query
 		$q = $this->db->select('COUNT(*) as count', FALSE)
 			->from('inventory');
-		
-		if (strlen($query_array['name'])) {
+		/*
+		if (($query_array['name'])) {
 			$q->like('name', $query_array['name']);
 		}
-		if (strlen($query_array['category'])) {
+		if (($query_array['category'])) {
 			$q->like('category', $query_array['category']);
 		}
-		if (strlen($query_array['brand'])) {
+		if (($query_array['brand'])) {
 			$q->like('brand', $query_array['brand']);
 		}
-		if (strlen($query_array['price'])) {
+		if (($query_array['price'])) {
 			$operators = array('gt' => '>', 'gte' => '>=', 'eq' => '=', 'lte' => '<=', 'lt' => '<');
 			$operator = $operators[$query_array['price_comparison']];
 						
 			$q->where("price $operator", $query_array['price']);
 		}
-		if (strlen($query_array['quantity'])) {
+		if (($query_array['quantity'])) {
 			$operators = array('gt' => '>', 'gte' => '>=', 'eq' => '=', 'lte' => '<=', 'lt' => '<');
 			$operator = $operators[$query_array['quantity_comparison']];
 						
 			$q->where("quantity $operator", $query_array['quantity']);
 		}
-		
+		*/
 		$tmp = $q->get()->result();
 		
 		$ret['num_rows'] = $tmp[0]->count;
-		
-		return $ret;
+		//return $ret;
 		
 	}
 	

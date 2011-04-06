@@ -48,7 +48,7 @@
 			<?php
 				$str = ""; 
 				//if ($sort_by == $field_name)$str .= "class=\"sort_$sort_order\""; 
-						$str .= anchor("admin/index/$field_name/" .
+						$str .= anchor("admin/index/$query_id/$field_name/" .
 					(($sort_order == 'asc' && $sort_by == $field_name) ? 'desc' : 'asc'),
 					$field_display); array_push($headings, $str); ?>
 			<?php endforeach; ?>
@@ -60,7 +60,7 @@
                             $record->quantity, $record->description);
         	}
 		}
-        $this->table->set_caption('Current invetory');;
+        $this->table->set_caption('Current inventory');;
          ?>
     <?php echo $this->table->generate(); ?>
 	<?php echo $this->pagination->create_links(); ?>
@@ -68,5 +68,4 @@
 	<?php echo form_upload('CSV', 'inventory.csv');?>
 	<?php echo form_submit('submit','upload');?>
 	<?php echo form_close();?>
-	<?php  print_r($test); ?>	
 </div>
