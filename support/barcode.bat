@@ -1,2 +1,2 @@
 @echo off
-java -jar Support.jar %*
+java -jar support\Support.jar %*

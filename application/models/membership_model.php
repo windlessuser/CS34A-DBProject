@@ -11,10 +11,9 @@ class Membership_model extends CI_Model {
 	{
 		$this->db->where('username', $this->input->post('username'));
 		$this->db->where('password', $this->myHash($this->input->post('password')));
-		$query = $this->db->get('UsersLog');
+		$query = $this->db->get('Users');
 		if($query->num_rows == 1)
 		{
-            $query = $this->db->get('UsersInfo')->where('username',$this->input->post('username'))
 			$data = $query->result_array();
 			return array(
 							'is_user' => true,
@@ -27,7 +26,7 @@ class Membership_model extends CI_Model {
 	function create_member()
 	{
 		
-		$Usersinfo_new_member_insert_data = array(
+		$new_member_insert_data = array(
 			'first_name' => $this->input->post('first_name'),
 			'last_name' => $this->input->post('last_name'),
 			'email' => $this->input->post('email_address'),
@@ -35,10 +34,8 @@ class Membership_model extends CI_Model {
 			'password' => $this->myHash($this->input->post('password'))	,
             'is_admin' => 0
 		);
-        
-        $UsersLog_new_member_insert_data['username'] = $Usersinfo_new_member_insert_data['username'];
-        $UsersLog_new_member_insert_data['password'] = $Usersinfo_new_member_insert_data['password'];		
-		return ($this->db->insert('UsersInfo', $new_member_insert_data) and $this->db->insert('UsersLog',$UsersLog_new_member_insert_data));
+	
+		return $this->db->insert('Users', $new_member_insert_data);
 		
 	}
 	
