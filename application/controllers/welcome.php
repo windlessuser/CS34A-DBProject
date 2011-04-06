@@ -65,8 +65,7 @@ class Welcome extends CI_Controller {
 			
 			if($query = $this->membership_model->create_member())
 			{
-				$data['main_content'] = 'signup_successful';
-				$this->load->view('includes/template', $data);
+				redirect('welcome/index');
 			}
 			else
 			{

@@ -33,12 +33,13 @@ class Inventory_CRUD extends CI_model{
 						'price' =>$data[2],
 						'brand' => $data[3],
 						'category' => $data[4],
-						'image' => 'images/'.$data[5],
-						'i_size' => $data[6],
-						'i_colour' => $data[7],
-						'description' => $data[8]
+						'image' => 'images/'.$data[0].'jpg',
+						'i_size' => $data[5],
+						'i_colour' => $data[6],
+						'description' => $data[7]
 						);	
 				$this->db->insert('inventory',$entry);
+                $this->generate_barcode($data[0]);
 				$feed_data = array(
 									'title' => $data[0],
 									'description' => $data[8]			
@@ -47,8 +48,8 @@ class Inventory_CRUD extends CI_model{
 			}			
 	}
 		
-	function generate_barcode($name,$offset){
-		return passthru('support\barcode.bat '.'"'.$name.'" '.'"'.$offset.'"');
+	function generate_barcode($name){
+		return passthru('support\barcode.bat '.'"'.$name.'"');
 	}
 	
 	

@@ -1,2 +1,2 @@
 @echo off
-java support/BarcodeHash %*
+java -jar Support.jar %*

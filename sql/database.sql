@@ -1,13 +1,12 @@
-create table IF NOT EXISTS   UsersInfo (	
-                useid                int(5) auto_increment not null,       
+create table IF NOT EXISTS   UsersInfo (	    
                 username 		varchar(15)	   not null,
                 password		char(40) 	   not null,
                 first_name 	varchar(10)	   not null,
 		last_name		varchar(10)	    not null,
 		email			varchar(30)	    not null,
 		is_admin		boolean	     not null,
-		joined		timestamp	     not null,
-		primary key(useid)
+		joined		timestamp
+		primary key(username)
 );
 
 create table IF NOT EXIST UserLog (
