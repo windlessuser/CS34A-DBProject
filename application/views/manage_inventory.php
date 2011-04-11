@@ -43,29 +43,34 @@
 		Found <?php echo $num_results; ?> items
 	</div>
 <div id="inventory_table">
+	<?php echo form_open_multipart('admin/upload_csv');?>
+	<?php echo form_upload('CSV', 'inventory.csv');?>
+	<?php echo form_submit('submit','upload');?>
+	<?php echo form_close();?>
 	<?php $headings = array();
 		foreach($fields as $field_name => $field_display): ?>
 			<?php
 				$str = ""; 
 				//if ($sort_by == $field_name)$str .= "class=\"sort_$sort_order\""; 
-						$str .= anchor("admin/index/$query_id/$field_name/" .
+						$str .= anchor("admin/index/$field_name/" .
 					(($sort_order == 'asc' && $sort_by == $field_name) ? 'desc' : 'asc'),
 					$field_display); array_push($headings, $str); ?>
 			<?php endforeach; ?>
 	<?php $this->table->set_heading($headings); ?>
     <?php if($num_results > 0){ 
     		foreach($records as $record){
-       			 $this->table->add_row('<img src = "'.site_url().$record->image.'"/>', $record->name, $record->brand, 
-                            $record->category, $record->price,
-                            $record->quantity, $record->description);
+       			 $this->table->add_row(anchor("admin/update/$record->barcode",img($record->image)), 
+       			 			anchor("admin/update_form/$record->barcode",$record->name),
+       			 			anchor("admin/update_form/$record->barcode",$record->brand), 
+                            anchor("admin/update_form/$record->barcode",$record->category),
+                            anchor("admin/update_form/$record->barcode",$record->price),
+                            anchor("admin/update_form/$record->barcode",$record->quantity),
+                            anchor("admin/update_form/$record->barcode",$record->description)
+							);
         	}
 		}
-        $this->table->set_caption('Current inventory');;
+        $this->table->set_caption('Current inventory');
          ?>
     <?php echo $this->table->generate(); ?>
 	<?php echo $this->pagination->create_links(); ?>
-	<?php echo form_open_multipart('admin/upload_csv');?>
-	<?php echo form_upload('CSV', 'inventory.csv');?>
-	<?php echo form_submit('submit','upload');?>
-	<?php echo form_close();?>
 </div>

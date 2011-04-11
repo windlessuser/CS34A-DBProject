@@ -1,26 +1,19 @@
 <?php
+include('Controller.php');
 
-class Admin extends CI_Controller{
+class Admin extends Controller{
     
     function __construct()
 	{
 		parent::__construct();
-        /*
-		if($this->session->userdata('is_logged_in') != true)
-        {
-            redirect('welcome');
-	    }
         if($this->session->userdata('is_admin') != 1)
         {
             redirect('welcome');
         }
-		 * 
-		 */
-        
 	}
 	
     
-    function index($query_id = 0,$sort_by = 'name', $sort_order = 'asc', $offset = 0)
+    function index($sort_by = 'name', $sort_order = 'asc', $offset = 0)
     {
     	$limit = 20;
     	$data['fields'] = array(
@@ -38,30 +31,19 @@ class Admin extends CI_Controller{
         $data['main_content'] = 'manage_inventory';
 		$this->load->model('inventory_CRUD');
 		
-		$this->input->load_query($query_id);
+				
+		$results = $this->inventory_CRUD->search($limit, $offset, $sort_by, $sort_order);	
+		//$results = $this->inventory_CRUD->get_inventory($limit,$offset);		
+		$data['records'] = $results['rows'];
+		//$data['records'] = $results->result();
+		$data['num_results'] = $results['num_rows'];
+		//$data['num_results'] = $this->inventory_CRUD->inventory_count();
 		
-		$query_array = array(
-			'name' => $this->input->get('name'),
-			'category' => $this->input->get('category'),
-			'brand'	=> $this->input->get('brand'),
-			'price_comparison' => $this->input->get('price_comparison'),
-			'price' => $this->input->get('price'),
-			'quantity_comparison' => $this->input->get('quantity_comparison'),
-			'quantity' => $this->input->get('quantity')
-		);
-		
-		//$results = $this->inventory_CRUD->search($query_array,$limit, $offset, $sort_by, $sort_order);	
-		$results = $this->inventory_CRUD->get_inventory($limit,$offset);		
-		//$data['records'] = $results['rows'];
-		$data['records'] = $results->result();
-		//$data['num_results'] = $results['num_rows'];
-		$data['num_results'] = $this->inventory_CRUD->inventory_count();
-		
-		$config['base_url'] = site_url("admin/index/$query_id/$sort_by/$sort_order");
+		$config['base_url'] = site_url("admin/index/$sort_by/$sort_order");
 		$config['total_rows'] = $data['num_results'];
 		$config['per_page'] = $limit;
 		$config['num_links'] = 20;
-		$config['uri_segment'] = 6;
+		$config['uri_segment'] = 5;
 		$config['full_tag_open'] = '<div id="inventory">';
 		$config['full_tag_close'] = '</div>';
 		
@@ -72,7 +54,6 @@ class Admin extends CI_Controller{
 		
 		$data['Brand_table_category_options'] = $this->inventory_CRUD->get_brand_options();
 		$data['Category_table_category_options'] = $this->inventory_CRUD->get_category_options();
-		$data['query_id'] = $query_id;
 
         $this->load->view('includes/template', $data);
     }
@@ -88,8 +69,21 @@ class Admin extends CI_Controller{
 			'quantity_comparison' => $this->input->post('quantity_comparison'),
 			'quantity' => $this->input->post('quantity')
 		);
-		$query_id = $this->input->save_query($query_array);
-		redirect("admin/index/$query_id");
+		$this->session->set_flashdata('search',$query_array);
+		redirect('admin/index/');
+	}
+	
+	function update_form($barcode){
+		$this->load->model('inventory_CRUD');
+		$temp = $this->inventory_CRUD->get_item($barcode);
+		$data['item'] = $temp[0];
+		$data['title'] = 'Admin';
+		$data['main_content'] = 'update_item';
+		$this->load->view('includes/template', $data);
+	}
+	
+	function update(){
+		
 	}
 	
 	function upload_csv()

@@ -32,10 +32,9 @@ class Welcome extends CI_Controller {
             {
 			    redirect('admin');
             }
-            else
-            {
-                echo $query['is_admin'];
-            }
+			else{
+				
+			}
 		}
 		else // incorrect username or password
 		{
