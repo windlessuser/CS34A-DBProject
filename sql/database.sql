@@ -7,17 +7,17 @@ create table IF NOT EXISTS   Users(
 		is_admin		boolean	       not null,
 		joined			timestamp,
 		primary key(username)
-);
+)ENGINE = INNODB;
 
 create table IF NOT EXISTS Brands (
 		brand           varchar(30)     not null,
 		primary key (brand)
-);
+)ENGINE = INNODB;
 
 create table IF NOT EXISTS Categories (
 		category	varchar(30) not null,
 		primary key(category)
-);
+)ENGINE = INNODB;
 
 create table IF NOT EXISTS Inventory	(
 		barcode 	   bigint(10)	        not null    auto_increment,
@@ -33,7 +33,7 @@ create table IF NOT EXISTS Inventory	(
 		primary key(barcode),
 		foreign key(brand) references Brands(brand),
 		foreign key(category) references Categories(category)
-);
+)ENGINE = INNODB;
 
 
 create table IF NOT EXISTS	Orders	(
@@ -45,7 +45,7 @@ create table IF NOT EXISTS	Orders	(
 		primary key(order_id),
 		foreign key(barcode) references Inventory(barcode),
 		foreign key(username) references Users(username)
-);
+)ENGINE = INNODB;
 
 create table IF NOT EXISTS	Rss	(
 		id 			int(11) 	not null auto_increment,
@@ -53,4 +53,4 @@ create table IF NOT EXISTS	Rss	(
 	    description	text,
 		r_date		timestamp,
 		primary key(id)
-);
+)ENGINE = INNODB;
